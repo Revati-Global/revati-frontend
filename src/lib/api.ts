@@ -1,4 +1,38 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.revatiglobal.com/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY || 'rg_live_677b989846a07722e1398c02';
+
+const defaultHeaders = {
+  'apikey': API_KEY,
+  'Content-Type': 'application/json'
+};
+
+export interface Banner {
+  id: string | number;
+  title: string;
+  slug: string;
+  image?: string;
+  icon?: string;
+  cta_text?: string;
+  cta_link?: string;
+}
+
+export interface Feature {
+  id: string | number;
+  title: string;
+  slug: string;
+  image?: string;
+  description?: string;
+  link?: string;
+}
+
+export interface Category {
+  id: string | number;
+  title: string;
+  slug: string;
+  image?: string;
+  description?: string;
+  subCategories?: Category[];
+}
 
 export interface Solution {
   id: string | number;
@@ -8,6 +42,7 @@ export interface Solution {
   description: string;
   features?: string[];
   image?: string;
+  icon?: string;
   order?: number;
 }
 
@@ -34,6 +69,7 @@ export interface Project {
   slug: string;
   client?: string;
   location?: string;
+  project_type?: string;
   capacity?: string;
   year?: number | string;
   summary?: string;
@@ -45,8 +81,17 @@ export interface Application {
   id: string | number;
   title: string;
   slug: string;
-  summary: string;
+  summary?: string;
   description?: string;
+  image?: string;
+}
+
+export interface Testimonial {
+  id: string | number;
+  full_name: string;
+  company_name?: string;
+  position?: string;
+  message: string;
   image?: string;
 }
 
@@ -70,205 +115,228 @@ export interface BlogPost {
   author?: string;
 }
 
-// Fallback data for SSG / offline preview
-const FALLBACK_SOLUTIONS: Solution[] = [
+// Fallback data using Futuretek copied rich assets
+export const FALLBACK_BANNERS: Banner[] = [
   {
     id: 1,
-    title: 'Industrial Heat Pump Solutions',
-    slug: 'industrial-heat-pump-solutions',
-    summary: 'High-temperature industrial air-to-water and water-to-water heat pumps for sustainable process heating up to 90°C.',
-    description: 'Revati Global engineers cutting-edge heat pump architectures that capture low-grade waste thermal energy and lift it to industrial process temperatures. Our systems dramatically reduce carbon footprints while cutting operational heating expenses by up to 65%.',
-    features: ['COP up to 4.2', 'Dual refrigerant circuit', 'Eco-friendly R1234ze / R513A', 'Remote BMS integration', 'Built-in economizer cycle'],
-    image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=800&auto=format&fit=crop'
+    title: 'Clean Energy & Industrial Heating Solutions',
+    slug: 'clean-energy-industrial-heating',
+    image: '/images/background-image.png',
+    icon: '/images/svg/drill.svg',
+    cta_text: 'Explore Solutions',
+    cta_link: '/solutions'
   },
   {
     id: 2,
-    title: 'Commercial Water & Process Heating',
-    slug: 'commercial-water-heating',
-    summary: 'High-efficiency thermal systems for hospitality, hospitals, pharmaceutical batch processes, and manufacturing plants.',
-    description: 'Turnkey thermal water heating systems designed for continuous, high-volume industrial reliability. Built with titanium and duplex stainless steel heat exchangers for superior corrosion resistance and longevity.',
-    features: ['Stainless steel SS316L/Duplex construction', 'Variable primary flow control', 'Integrated modulating burners', 'Automated descaling systems'],
-    image: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?q=80&w=800&auto=format&fit=crop'
+    title: 'High-Temperature Industrial Heat Pumps & Steam Systems',
+    slug: 'high-temp-industrial-heat-pumps',
+    image: '/images/img/about/about-section-two-bg.png',
+    icon: '/images/svg/manufacture.svg',
+    cta_text: 'Request Quote',
+    cta_link: '/contact'
+  }
+];
+
+export const FALLBACK_FEATURES: Feature[] = [
+  {
+    id: 1,
+    title: 'Well Maintained',
+    slug: 'well-maintained',
+    image: '/images/svg/maintainance.svg',
+    description: 'We deliver innovative solutions for clean energy and industrial excellence with zero downtime reliability.'
+  },
+  {
+    id: 2,
+    title: 'Certified Engineering',
+    slug: 'certified-engineering',
+    image: '/images/svg/manufacture.svg',
+    description: 'ASME, IBR and ISO compliant thermal and mechanical engineering standards for mission-critical operations.'
   },
   {
     id: 3,
-    title: 'Cleanroom & HVAC Turnkey Engineering',
-    slug: 'cleanroom-hvac-turnkey',
-    summary: 'ISO Class 5-8 certified cleanroom environmental control systems for biotech, pharmaceutical, and electronics manufacturing.',
-    description: 'Precision environmental control delivering precise temperature (±0.5°C), relative humidity control (±3% RH), and certified laminar airflow with multi-stage HEPA/ULPA filtration.',
-    features: ['ISO 14644 cleanroom compliance', 'Direct-expansion & chilled water AHUs', 'Integrated dehumidification wheels', '21 CFR Part 11 BMS telemetry'],
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop'
+    title: 'Precision Quality',
+    slug: 'precision-quality',
+    image: '/images/svg/drill.svg',
+    description: 'Advanced fluid mechanics, cleanroom air balancing, and turnkey HVAC execution tested to global specifications.'
   },
   {
     id: 4,
-    title: 'Turnkey Piping & Heat Exchanger Systems',
-    slug: 'turnkey-piping-heat-exchangers',
-    summary: 'Custom designed shell & tube and plate heat exchangers paired with engineered process fluid piping networks.',
-    description: 'Complete mechanical piping fabrication and heat transfer packages engineered under ASME Section VIII and IBR standards for high pressure thermal fluid networks.',
-    features: ['ASME Sec VIII / IBR compliant', 'Gasketed and welded plate exchangers', 'Thermal stress FEA validated', 'Hydro-tested to 1.5x design pressure'],
-    image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?q=80&w=800&auto=format&fit=crop'
+    title: 'Dedicated Support',
+    slug: 'dedicated-support',
+    image: '/images/svg/vest.svg',
+    description: 'Pan-India engineering support team located at our Kolkata headquarters with rapid response capability.'
   }
 ];
 
-const FALLBACK_PRODUCTS: Product[] = [
+export const FALLBACK_SOLUTIONS: Solution[] = [
   {
     id: 1,
-    title: 'ThermaMax R90 Industrial Heat Pump',
-    slug: 'thermamax-r90-heat-pump',
-    category_name: 'Industrial Heat Pumps',
-    category_slug: 'industrial-heat-pumps',
-    description: 'High-lift industrial heat pump producing continuous hot water at 90°C using environmentally compliant low-GWP refrigerants.',
-    feature_and_benefit: 'Reduces process heating fossil fuel consumption by up to 70% with high COP inverter screw compressors.',
-    capacity: '120 kW - 1200 kW Thermal',
-    power: '415V, 3-Phase, 50Hz',
-    specifications: [
-      { key: 'Max Output Temp', value: '90°C (194°F)' },
-      { key: 'Refrigerant', value: 'R1234ze (Low GWP < 1)' },
-      { key: 'Compressor Type', value: 'Semi-Hermetic Inverter Screw' },
-      { key: 'Heat Exchanger', value: 'Shell & Tube Duplex Steel' }
-    ],
-    image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=800&auto=format&fit=crop'
+    title: 'Plant Upgrade & Improvement',
+    slug: 'plant-upgrade-and-improvement',
+    summary: 'Comprehensive plant modernization, efficiency optimization, and energy audit engineering.',
+    description: 'Revati Global is a trusted partner in industrial plant retrofitting, boiler modernization, and process heating efficiency optimization across India.',
+    image: '/images/img/services/service1.jpg',
+    icon: '/images/svg/services/helmet.svg'
   },
   {
     id: 2,
-    title: 'AeroTherm Commercial Air-Source Heat Pump',
-    slug: 'aerotherm-commercial-air-source',
-    category_name: 'Commercial Heating',
-    category_slug: 'commercial-heating',
-    description: 'Heavy duty commercial air-to-water heat pump tailored for hotels, central hospitals, and residential townships.',
-    feature_and_benefit: 'Operates in ambient conditions down to -10°C with intelligent reverse-cycle defrosting.',
-    capacity: '45 kW - 280 kW',
-    power: '415V, 3-Phase, 50Hz',
-    specifications: [
-      { key: 'Output Water Temp', value: '65°C' },
-      { key: 'COP Range', value: '3.6 - 4.2' },
-      { key: 'Fan Type', value: 'EC Variable Speed Aerofoil' },
-      { key: 'Sound Level', value: '< 62 dBA at 1m' }
-    ],
-    image: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?q=80&w=800&auto=format&fit=crop'
+    title: 'Industrial Construction & Engineering',
+    slug: 'industrial-construction',
+    summary: 'Turnkey thermal fluid piping networks, boiler houses, and pressure vessel installation.',
+    description: 'Complete mechanical and structural construction adhering to ASME and IBR engineering specifications.',
+    image: '/images/img/services/service2.jpg',
+    icon: '/images/svg/services/robotic.svg'
   },
   {
     id: 3,
-    title: 'IsoClean Precision Cleanroom AHU',
-    slug: 'isoclean-cleanroom-ahu',
-    category_name: 'Cleanroom Systems',
-    category_slug: 'cleanroom-systems',
-    description: 'Thermal break modular air handling unit designed specifically for pharmaceutical and aseptic cleanroom environments.',
-    feature_and_benefit: 'Double-skin polyurethane insulated casing with internal coved corners to prevent bacterial harborage.',
-    capacity: '2,000 - 45,000 CFM',
-    power: '415V, 3-Phase, 50Hz',
-    specifications: [
-      { key: 'Casing Construction', value: 'Double skin 50mm PUF thermal break' },
-      { key: 'Filtration Stages', value: 'Pre (EU4), Fine (EU7), HEPA (H14)' },
-      { key: 'Fan Technology', value: 'Direct-driven backward curved plug fan' },
-      { key: 'Leakage Class', value: 'EN 1886 Class L1' }
-    ],
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop'
-  }
-];
-
-const FALLBACK_PROJECTS: Project[] = [
-  {
-    id: 1,
-    title: '1.2 MW Industrial Heat Pump Retrofit',
-    slug: '1-2-mw-heat-pump-retrofit',
-    client: 'Apex Biotech Ltd',
-    location: 'Pune, Maharashtra',
-    capacity: '1,200 kW Hot Water at 85°C',
-    year: 2025,
-    summary: 'Complete replacement of legacy diesel boiler with multi-stage industrial heat pumps, reducing annual emissions by 420 MT CO2.',
-    image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    id: 2,
-    title: 'Turnkey ISO 7 Cleanroom Environmental HVAC',
-    slug: 'iso-7-cleanroom-hvac',
-    client: 'Zenith Formulations',
-    location: 'Baddi, Himachal Pradesh',
-    capacity: '28,000 CFM with ±0.5°C Precision',
-    year: 2024,
-    summary: 'Design, supply and validation of an ISO Class 7 injectable formulation cleanroom with 100% fresh air dehumidification.',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    id: 3,
-    title: 'Brewery Pasteurization Thermal Recovery Network',
-    slug: 'brewery-pasteurization-thermal-recovery',
-    client: 'Continental Breweries Ltd',
-    location: 'Aurangabad, Maharashtra',
-    capacity: '850 kW Heat Recovery',
-    year: 2025,
-    summary: 'Waste heat harvesting from wort chilling loops used to preheat boiler feed water via titanium plate heat exchangers.',
-    image: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?q=80&w=800&auto=format&fit=crop'
-  }
-];
-
-const FALLBACK_APPLICATIONS: Application[] = [
-  {
-    id: 1,
-    title: 'Pharmaceutical & Biotechnology',
-    slug: 'pharmaceutical-biotechnology',
-    summary: 'Ultra-pure cleanroom environments, aseptic filling suites, and high-purity water heating systems complying with US FDA and EU GMP norms.',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    id: 2,
-    title: 'Breweries, Distilleries & Beverages',
-    slug: 'breweries-beverages',
-    summary: 'Wort boiling, pasteurization heat loops, bottle washing thermal circuits, and cold-side refrigeration optimization.',
-    image: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    id: 3,
-    title: 'Dairy & Food Processing',
-    slug: 'dairy-food-processing',
-    summary: 'Sanitary milk pasteurization heating, CIP chemical cleaning hot loops, and hygienic facility climate control.',
-    image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=800&auto=format&fit=crop'
+    title: 'Chemical & Process Heating',
+    slug: 'chemical-industry',
+    summary: 'Thermic fluid systems, titanium heat exchangers, and high-temp corrosive fluid handling.',
+    description: 'Engineered heating solutions designed specifically for pharmaceutical synthesis and chemical manufacturing.',
+    image: '/images/img/services/service3.jpg',
+    icon: '/images/svg/services/bioengineering.svg'
   },
   {
     id: 4,
-    title: 'Textile Processing & Dyeing',
-    slug: 'textile-processing-dyeing',
-    summary: 'High-volume hot water delivery for fabric scouring, continuous washing ranges, and dye baths with heat recovery.',
-    image: 'https://images.unsplash.com/photo-1581092162384-8987c1d64718?q=80&w=800&auto=format&fit=crop'
+    title: 'Energy & Commodities Optimization',
+    slug: 'energy-commodities',
+    summary: 'Industrial heat pump systems and waste heat recovery loops reducing operational costs by up to 60%.',
+    description: 'Cutting-edge closed-loop thermal harvesting that transforms industrial waste heat into usable high-temperature energy.',
+    image: '/images/img/services/service4.jpg',
+    icon: '/images/svg/services/oil-well.svg'
+  }
+];
+
+export const FALLBACK_APPLICATIONS: Application[] = [
+  {
+    id: 1,
+    title: 'Energy Management',
+    slug: 'energy-management',
+    summary: 'Comprehensive thermal and electrical energy harvesting systems for modern factories.',
+    image: '/images/img/application/application1.png'
+  },
+  {
+    id: 2,
+    title: 'Steam Engineering',
+    slug: 'steam-engineering',
+    summary: 'High-pressure steam distribution, condensate return, and pressure reducing station engineering.',
+    image: '/images/img/application/application2.png'
+  },
+  {
+    id: 3,
+    title: 'Fuel & Water Management',
+    slug: 'fuel-water-management',
+    summary: 'Sanitary water purification, boiler feedwater deaeration, and high-purity chemical treatment.',
+    image: '/images/img/application/application3.png'
+  },
+  {
+    id: 4,
+    title: 'Flow Management',
+    slug: 'flow-management',
+    summary: 'Precision control valves, ultrasonic flow metering, and balancing hydronics.',
+    image: '/images/img/application/application4.png'
   },
   {
     id: 5,
-    title: 'Hospitality & Commercial Infrastructure',
-    slug: 'hospitality-commercial',
-    summary: 'Centralized hot water supply, underfloor heating, heated infinity pools, and quiet HVAC systems for luxury resorts and hospitals.',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop'
+    title: 'Compressed Air Solutions',
+    slug: 'compressed-air-solutions',
+    summary: 'High-efficiency industrial air compressors, desiccant dryers, and zero-loss pneumatic networks.',
+    image: '/images/img/application/application5.png'
   }
 ];
 
-const FALLBACK_DOWNLOADS: DownloadItem[] = [
+export const FALLBACK_PROJECTS: Project[] = [
   {
     id: 1,
-    title: 'Revati Global Corporate Profile & Engineering Capabilities',
-    category: 'Corporate',
-    description: 'Comprehensive overview of engineering infrastructure, thermal competencies, and client case studies.',
+    title: 'Regulatory Compliance Thermal System',
+    slug: 'regulatory-compliance-thermal-system',
+    location: 'Kolkata, West Bengal',
+    project_type: 'Industrial Thermal',
+    summary: 'Turnkey thermal engineering and regulatory steam compliance system engineered for large-scale industrial manufacturing.',
+    image: '/images/img/projects/project1.jpg'
+  },
+  {
+    id: 2,
+    title: 'Commercial Steam Recovery Plant',
+    slug: 'commercial-steam-recovery-plant',
+    location: 'Howrah Industrial Belt, Kolkata',
+    project_type: 'Energy Management',
+    summary: 'High-efficiency condensate and flash steam heat recovery network integrated into process pipelines.',
+    image: '/images/img/projects/project2.jpg'
+  },
+  {
+    id: 3,
+    title: 'Cleanroom Climate Engineering Facility',
+    slug: 'cleanroom-climate-engineering-facility',
+    location: 'Salt Lake Sector V, Kolkata',
+    project_type: 'Cleanroom HVAC',
+    summary: 'Precision environmental validation and aseptic climate control system for pharmaceutical packaging.',
+    image: '/images/img/projects/project3.jpg'
+  },
+  {
+    id: 4,
+    title: 'Industrial Process Heating Infrastructure',
+    slug: 'industrial-process-heating-infrastructure',
+    location: 'Durgapur Industrial Complex, West Bengal',
+    project_type: 'Boilers & Heaters',
+    summary: 'Heavy-duty thermic fluid heating unit with automated modulation and low emissions burners.',
+    image: '/images/img/projects/project4.jpg'
+  },
+  {
+    id: 5,
+    title: 'Turnkey Hydronic Piping Network',
+    slug: 'turnkey-hydronic-piping-network',
+    location: 'Haldia Petrochemical Hub, West Bengal',
+    project_type: 'Piping & Valves',
+    summary: 'ASME-compliant high-pressure hydronic distribution loop with precision flow regulation.',
+    image: '/images/img/projects/project5.jpg'
+  }
+];
+
+export const FALLBACK_TESTIMONIALS: Testimonial[] = [
+  {
+    id: 1,
+    full_name: 'Sheela Adhikari',
+    company_name: 'Precision Engineering Pvt. Ltd.',
+    position: 'Chief Technical Director',
+    message: 'Revati Global provided exceptional engineering support for our high-temperature boiler and piping installation. Highly recommended for thermal projects.'
+  },
+  {
+    id: 2,
+    full_name: 'Nisha Karki',
+    company_name: 'Apex Cleanroom & Formulations',
+    position: 'Plant Operations Manager',
+    message: 'Their cleanroom HVAC validation and hydronic balancing delivered outstanding performance within stringent regulatory parameters.'
+  },
+  {
+    id: 3,
+    full_name: 'Mamata Gurung',
+    company_name: 'Eastern Manufacturing Hub',
+    position: 'General Manager',
+    message: 'Reliable engineering, punctual delivery, and thorough technical expertise. The Kolkata engineering team has been a valuable partner for our plant expansion.'
+  }
+];
+
+export const FALLBACK_DOWNLOADS: DownloadItem[] = [
+  {
+    id: 1,
+    title: 'Shellmax Global Series Technical Manual',
+    category: 'Datasheet',
+    description: 'Complete technical specifications, burner configurations, and dimension schedules.',
     file: '/brand/corporate-profile.pdf',
     file_size: '3.4 MB'
   },
   {
     id: 2,
-    title: 'Industrial High-Temperature Heat Pump Technical Datasheet',
-    category: 'Datasheet',
-    description: 'COP curves, dimensional layouts, power specs, and hydraulic schematics for ThermaMax R90 series.',
+    title: 'Revati Global Corporate Engineering Profile',
+    category: 'Corporate',
+    description: 'Comprehensive overview of engineering competencies, thermal projects, and client case studies.',
     file: '/brand/heat-pump-datasheet.pdf',
     file_size: '2.1 MB'
-  },
-  {
-    id: 3,
-    title: 'Cleanroom HVAC Engineering Standards & Validation Guide',
-    category: 'Brochure',
-    description: 'ISO 14644 airflow classification criteria and technical AHU layout guidance.',
-    file: '/brand/cleanroom-brochure.pdf',
-    file_size: '4.8 MB'
   }
 ];
 
-const FALLBACK_BLOGS: BlogPost[] = [
+export const FALLBACK_BLOGS: BlogPost[] = [
   {
     id: 1,
     title: 'Decarbonizing Industrial Heat: Why Heat Pumps Outperform Boilers',
@@ -276,7 +344,7 @@ const FALLBACK_BLOGS: BlogPost[] = [
     summary: 'An engineering analysis on how industrial heat pumps deliver up to 4x efficiency gains compared to diesel or gas boilers.',
     published_at: '2026-03-15',
     author: 'Revati Engineering Team',
-    image: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=800&auto=format&fit=crop'
+    image: '/images/img/blogs/blog1.jpg'
   },
   {
     id: 2,
@@ -285,16 +353,65 @@ const FALLBACK_BLOGS: BlogPost[] = [
     summary: 'Designing turbulent vs laminar airflow regimens to control airborne viable and non-viable particulate concentrations.',
     published_at: '2026-02-28',
     author: 'Revati Engineering Team',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop'
+    image: '/images/img/blogs/blog2.jpg'
   }
 ];
 
+// -------------------------------------------------------------
+// Live API Methods (with graceful fallback)
+// -------------------------------------------------------------
+
+export async function getBanners(): Promise<Banner[]> {
+  try {
+    const res = await fetch(`${API_BASE_URL}/banners`, {
+      headers: defaultHeaders,
+      next: { revalidate: 300 }
+    });
+    if (!res.ok) return FALLBACK_BANNERS;
+    const data = await res.json();
+    return data.banners?.length ? data.banners : FALLBACK_BANNERS;
+  } catch {
+    return FALLBACK_BANNERS;
+  }
+}
+
+export async function getFeatures(): Promise<Feature[]> {
+  try {
+    const res = await fetch(`${API_BASE_URL}/features`, {
+      headers: defaultHeaders,
+      next: { revalidate: 300 }
+    });
+    if (!res.ok) return FALLBACK_FEATURES;
+    const data = await res.json();
+    return data.features?.length ? data.features : FALLBACK_FEATURES;
+  } catch {
+    return FALLBACK_FEATURES;
+  }
+}
+
+export async function getCategories(): Promise<Category[]> {
+  try {
+    const res = await fetch(`${API_BASE_URL}/categories`, {
+      headers: defaultHeaders,
+      next: { revalidate: 300 }
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.categories || [];
+  } catch {
+    return [];
+  }
+}
+
 export async function getSolutions(): Promise<Solution[]> {
   try {
-    const res = await fetch(`${API_BASE_URL}/solutions`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${API_BASE_URL}/solutions`, {
+      headers: defaultHeaders,
+      next: { revalidate: 300 }
+    });
     if (!res.ok) return FALLBACK_SOLUTIONS;
     const data = await res.json();
-    return data.solutions || data.data || FALLBACK_SOLUTIONS;
+    return data.solutions?.length ? data.solutions : FALLBACK_SOLUTIONS;
   } catch {
     return FALLBACK_SOLUTIONS;
   }
@@ -307,26 +424,32 @@ export async function getSolutionBySlug(slug: string): Promise<Solution | undefi
 
 export async function getProducts(): Promise<Product[]> {
   try {
-    const res = await fetch(`${API_BASE_URL}/products`, { next: { revalidate: 3600 } });
-    if (!res.ok) return FALLBACK_PRODUCTS;
+    const res = await fetch(`${API_BASE_URL}/products`, {
+      headers: defaultHeaders,
+      next: { revalidate: 300 }
+    });
+    if (!res.ok) return [];
     const data = await res.json();
-    return data.products || data.data || FALLBACK_PRODUCTS;
+    return data.products || [];
   } catch {
-    return FALLBACK_PRODUCTS;
+    return [];
   }
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | undefined> {
   const all = await getProducts();
-  return all.find(p => p.slug === slug) || FALLBACK_PRODUCTS.find(p => p.slug === slug);
+  return all.find(p => p.slug === slug);
 }
 
 export async function getProjects(): Promise<Project[]> {
   try {
-    const res = await fetch(`${API_BASE_URL}/projects`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${API_BASE_URL}/projects`, {
+      headers: defaultHeaders,
+      next: { revalidate: 300 }
+    });
     if (!res.ok) return FALLBACK_PROJECTS;
     const data = await res.json();
-    return data.projects || data.data || FALLBACK_PROJECTS;
+    return data.projects?.length ? data.projects : FALLBACK_PROJECTS;
   } catch {
     return FALLBACK_PROJECTS;
   }
@@ -339,21 +462,41 @@ export async function getProjectBySlug(slug: string): Promise<Project | undefine
 
 export async function getApplications(): Promise<Application[]> {
   try {
-    const res = await fetch(`${API_BASE_URL}/applications`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${API_BASE_URL}/applications`, {
+      headers: defaultHeaders,
+      next: { revalidate: 300 }
+    });
     if (!res.ok) return FALLBACK_APPLICATIONS;
     const data = await res.json();
-    return data.applications || data.data || FALLBACK_APPLICATIONS;
+    return data.applications?.length ? data.applications : FALLBACK_APPLICATIONS;
   } catch {
     return FALLBACK_APPLICATIONS;
   }
 }
 
+export async function getTestimonials(): Promise<Testimonial[]> {
+  try {
+    const res = await fetch(`${API_BASE_URL}/testimonials`, {
+      headers: defaultHeaders,
+      next: { revalidate: 300 }
+    });
+    if (!res.ok) return FALLBACK_TESTIMONIALS;
+    const data = await res.json();
+    return data.testimonials?.length ? data.testimonials : FALLBACK_TESTIMONIALS;
+  } catch {
+    return FALLBACK_TESTIMONIALS;
+  }
+}
+
 export async function getDownloads(): Promise<DownloadItem[]> {
   try {
-    const res = await fetch(`${API_BASE_URL}/downloads`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${API_BASE_URL}/downloads`, {
+      headers: defaultHeaders,
+      next: { revalidate: 300 }
+    });
     if (!res.ok) return FALLBACK_DOWNLOADS;
     const data = await res.json();
-    return data.downloads || data.data || FALLBACK_DOWNLOADS;
+    return data.downloads?.length ? data.downloads : FALLBACK_DOWNLOADS;
   } catch {
     return FALLBACK_DOWNLOADS;
   }
@@ -361,10 +504,13 @@ export async function getDownloads(): Promise<DownloadItem[]> {
 
 export async function getBlogs(): Promise<BlogPost[]> {
   try {
-    const res = await fetch(`${API_BASE_URL}/blogs`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${API_BASE_URL}/blogs`, {
+      headers: defaultHeaders,
+      next: { revalidate: 300 }
+    });
     if (!res.ok) return FALLBACK_BLOGS;
     const data = await res.json();
-    return data.blogs || data.data || FALLBACK_BLOGS;
+    return data.blogs?.length ? data.blogs : FALLBACK_BLOGS;
   } catch {
     return FALLBACK_BLOGS;
   }
@@ -382,19 +528,22 @@ export async function submitEnquiry(payload: {
   company?: string;
   subject?: string;
   message: string;
+  interest?: string;
+  state?: string;
+  city?: string;
+  country?: string;
   _hp?: string;
   _t?: number;
-  turnstileToken?: string;
-}) {
-  const res = await fetch(`${API_BASE_URL}/enquiries`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  });
-
-  const data = await res.json();
-  if (!res.ok || data.result !== 'success') {
-    throw new Error(data.message || 'Failed to submit enquiry');
+}): Promise<{ ok: boolean; message?: string }> {
+  try {
+    const res = await fetch(`${API_BASE_URL}/enquiries`, {
+      method: 'POST',
+      headers: defaultHeaders,
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    return { ok: res.ok && data.result === 'success', message: data.message };
+  } catch (err: any) {
+    return { ok: false, message: err?.message || 'Network error' };
   }
-  return data;
 }

@@ -37,7 +37,7 @@ export function Header() {
             <a href="tel:+919876543210" className="hover:text-white transition">+91 98765 43210</a>
           </span>
           <span className="hidden md:inline text-[#D9DDE3]/60">|</span>
-          <span className="hidden md:inline text-slate-400">Pune, Maharashtra</span>
+          <span className="hidden md:inline text-slate-300">Kolkata, West Bengal</span>
         </div>
       </div>
 

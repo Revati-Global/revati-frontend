@@ -6,4 +6,6 @@ dist
 .next
 .vercel
 .DS_Store
+public/frontend/
+public/uploads/
 

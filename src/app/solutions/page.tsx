@@ -40,7 +40,7 @@ export default async function SolutionsPage() {
             >
               <div className="relative h-64 w-full bg-slate-100 overflow-hidden">
                 <Image
-                  src={sol.image || 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=800&auto=format&fit=crop'}
+                  src={sol.image || '/images/img/services/service1.jpg'}
                   alt={sol.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"

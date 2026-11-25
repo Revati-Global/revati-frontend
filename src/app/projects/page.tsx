@@ -40,7 +40,7 @@ export default async function ProjectsPage() {
             >
               <div className="relative h-60 w-full bg-slate-100 overflow-hidden">
                 <Image
-                  src={proj.image || 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=800&auto=format&fit=crop'}
+                  src={proj.image || '/images/img/projects/project1.jpg'}
                   alt={proj.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"

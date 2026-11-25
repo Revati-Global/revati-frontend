@@ -40,7 +40,7 @@ export default async function BlogPage() {
             >
               <div className="relative h-64 w-full bg-slate-100 overflow-hidden">
                 <Image
-                  src={post.image || 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=800&auto=format&fit=crop'}
+                  src={post.image || '/images/img/blogs/blog1.jpg'}
                   alt={post.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"

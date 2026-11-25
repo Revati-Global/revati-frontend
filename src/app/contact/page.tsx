@@ -93,8 +93,8 @@ export default function ContactPage() {
                 <div className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-[#645394] shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold text-white block mb-0.5">Engineering & Operations Hub</span>
-                    <span>Pune Industrial Corridor, Maharashtra, India</span>
+                    <span className="font-bold text-white block mb-0.5">Corporate & Engineering Headquarters</span>
+                    <span>PS Srijan Corporate Park, Sector V, Salt Lake, Kolkata, West Bengal 700091, India</span>
                   </div>
                 </div>
 

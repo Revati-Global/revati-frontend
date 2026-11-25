@@ -40,7 +40,7 @@ export default async function ProductsPage() {
             >
               <div className="relative h-60 w-full bg-slate-100 overflow-hidden">
                 <Image
-                  src={prod.image || 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=800&auto=format&fit=crop'}
+                  src={prod.image || '/images/background-image.png'}
                   alt={prod.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"

@@ -59,6 +59,30 @@ export default function AboutPage() {
       {/* Quality Standards & Accreditations */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#D9DDE3] shadow-sm space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pb-8 border-b border-[#F2F1F5]">
+            <div className="lg:col-span-7 space-y-3">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#645394] font-mono">
+                Corporate Headquarters & Center of Excellence
+              </span>
+              <h2 className="text-3xl font-extrabold text-[#35313B] font-heading">
+                Kolkata Engineering Hub
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Operating out of PS Srijan Corporate Park, Sector V, Salt Lake, Kolkata, our central engineering management directs turnkey projects, boiler manufacturing partnerships, and precision cleanroom HVAC commissions across India and overseas.
+              </p>
+            </div>
+            <div className="lg:col-span-5">
+              <div className="relative h-60 w-full rounded-2xl overflow-hidden border border-[#D9DDE3] shadow-md">
+                <Image
+                  src="/images/img/about/industry-2.jpg"
+                  alt="Kolkata Engineering Center"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
           <div className="space-y-2">
             <span className="text-xs font-bold uppercase tracking-wider text-[#645394] font-mono">
               Quality Assurance
