@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   description: 'Industrial reference installations and projects executed by Revati Global across pharmaceutical, chemical, and manufacturing plants.',
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function ProjectsPage() {
   const projects = await getProjects();
 

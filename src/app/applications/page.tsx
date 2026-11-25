@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   description: 'Industrial sectors and applications served by Revati Global: Pharmaceuticals, Breweries, Dairy, Food Processing, Textiles and Power.',
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function ApplicationsPage() {
   const applications = await getApplications();
 

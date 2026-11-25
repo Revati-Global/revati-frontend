@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   description: 'In-depth engineering articles on industrial decarbonization, heat pumps, cleanroom airflow, and thermal energy recovery.',
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function BlogPage() {
   const blogs = await getBlogs();
 

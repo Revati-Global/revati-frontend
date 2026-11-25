@@ -5,7 +5,13 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'jpnzetekuwlnefxdrbgt.supabase.co',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: '**.supabase.co',
+        pathname: '/**',
       },
       {
         protocol: 'https',
@@ -14,6 +20,10 @@ const nextConfig = {
       {
         protocol: 'http',
         hostname: 'localhost',
+      },
+      {
+        protocol: 'http',
+        hostname: '127.0.0.1',
       },
     ],
     minimumCacheTTL: 2592000, // 30 days image cache to minimize Supabase egress

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   description: 'Industrial heat pumps, air handling units, commercial water heating and thermal equipment engineered by Revati Global.',
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function ProductsPage() {
   const products = await getProducts();
 

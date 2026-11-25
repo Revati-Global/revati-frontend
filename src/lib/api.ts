@@ -38,8 +38,8 @@ export interface Solution {
   id: string | number;
   title: string;
   slug: string;
-  summary: string;
-  description: string;
+  summary?: string;
+  description?: string;
   features?: string[];
   image?: string;
   icon?: string;
@@ -53,7 +53,7 @@ export interface Product {
   category_id?: string | number;
   category_name?: string;
   category_slug?: string;
-  description: string;
+  description?: string;
   feature_and_benefit?: string;
   capacity?: string;
   power?: string;
@@ -115,23 +115,24 @@ export interface BlogPost {
   author?: string;
 }
 
-// Fallback data using Futuretek copied rich assets
+// -------------------------------------------------------------
+// Real Fallback Data (100% matched to Futuretek original dump & assets)
+// -------------------------------------------------------------
+
 export const FALLBACK_BANNERS: Banner[] = [
   {
     id: 1,
-    title: 'Clean Energy & Industrial Heating Solutions',
-    slug: 'clean-energy-industrial-heating',
-    image: '/images/background-image.png',
-    icon: '/images/svg/drill.svg',
+    title: 'Industries & Clean Energy Solutions',
+    slug: 'industries',
+    image: 'https://jpnzetekuwlnefxdrbgt.supabase.co/storage/v1/object/public/revati-media/banners/e8403251-202b-4305-a9dd-e4f3e0b3d11f.webp',
     cta_text: 'Explore Solutions',
     cta_link: '/solutions'
   },
   {
     id: 2,
-    title: 'High-Temperature Industrial Heat Pumps & Steam Systems',
-    slug: 'high-temp-industrial-heat-pumps',
-    image: '/images/img/about/about-section-two-bg.png',
-    icon: '/images/svg/manufacture.svg',
+    title: 'Turnkey Thermal & Engineering Solutions',
+    slug: 'solutions',
+    image: 'https://jpnzetekuwlnefxdrbgt.supabase.co/storage/v1/object/public/revati-media/banners/12ca1829-07c4-4023-9604-3a4bcd339cd2.webp',
     cta_text: 'Request Quote',
     cta_link: '/contact'
   }
@@ -139,32 +140,32 @@ export const FALLBACK_BANNERS: Banner[] = [
 
 export const FALLBACK_FEATURES: Feature[] = [
   {
-    id: 1,
+    id: 4,
     title: 'Well Maintained',
     slug: 'well-maintained',
-    image: '/images/svg/maintainance.svg',
-    description: 'We deliver innovative solutions for clean energy and industrial excellence with zero downtime reliability.'
+    image: 'https://jpnzetekuwlnefxdrbgt.supabase.co/storage/v1/object/public/revati-media/features/cc8f2212-54f0-4fc8-a1e8-86f3917826e8.svg',
+    description: 'We deliver innovative solutions for clean energy and process heating, offering advanced systems to enhance efficiency for every industrial need.'
   },
   {
-    id: 2,
-    title: 'Certified Engineering',
-    slug: 'certified-engineering',
-    image: '/images/svg/manufacture.svg',
-    description: 'ASME, IBR and ISO compliant thermal and mechanical engineering standards for mission-critical operations.'
+    id: 5,
+    title: 'Industrial Specialist',
+    slug: 'industrial-specialist',
+    image: 'https://jpnzetekuwlnefxdrbgt.supabase.co/storage/v1/object/public/revati-media/features/3df6af7f-8c16-4cf3-bbd9-15a54b52ca64.svg',
+    description: 'We focus on managing thermal engineering projects, including planning, execution, and monitoring while meeting stringent safety and regulatory standards.'
   },
   {
-    id: 3,
-    title: 'Precision Quality',
-    slug: 'precision-quality',
-    image: '/images/svg/drill.svg',
-    description: 'Advanced fluid mechanics, cleanroom air balancing, and turnkey HVAC execution tested to global specifications.'
+    id: 6,
+    title: 'Latest Equipment',
+    slug: 'latest-equipment',
+    image: 'https://jpnzetekuwlnefxdrbgt.supabase.co/storage/v1/object/public/revati-media/features/78261cf9-c6ac-40cf-9c94-5627580ddd6b.svg',
+    description: 'We provide our customers with state-of-the-art boilers, heat pumps, and valves to ensure optimal operational performance.'
   },
   {
-    id: 4,
-    title: 'Dedicated Support',
-    slug: 'dedicated-support',
-    image: '/images/svg/vest.svg',
-    description: 'Pan-India engineering support team located at our Kolkata headquarters with rapid response capability.'
+    id: 7,
+    title: 'Safety Commitment',
+    slug: 'safety-commitment',
+    image: 'https://jpnzetekuwlnefxdrbgt.supabase.co/storage/v1/object/public/revati-media/features/851e60a8-bf3c-4c09-a704-6229f29a3251.svg',
+    description: 'Our company is committed to delivering the highest safety standards across all installations, adhering to ASME, IBR, and ISO guidelines.'
   }
 ];
 
@@ -174,36 +175,32 @@ export const FALLBACK_SOLUTIONS: Solution[] = [
     title: 'Plant Upgrade & Improvement',
     slug: 'plant-upgrade-and-improvement',
     summary: 'Comprehensive plant modernization, efficiency optimization, and energy audit engineering.',
-    description: 'Revati Global is a trusted partner in industrial plant retrofitting, boiler modernization, and process heating efficiency optimization across India.',
-    image: '/images/img/services/service1.jpg',
-    icon: '/images/svg/services/helmet.svg'
+    description: 'Revati Global is a trusted partner in industrial plant retrofitting, boiler modernization, and process heating efficiency optimization.',
+    image: 'https://jpnzetekuwlnefxdrbgt.supabase.co/storage/v1/object/public/revati-media/solutions/4d7d75e1-6d19-41b1-ba85-73ba750d12be.webp'
   },
   {
     id: 2,
-    title: 'Industrial Construction & Engineering',
-    slug: 'industrial-construction',
-    summary: 'Turnkey thermal fluid piping networks, boiler houses, and pressure vessel installation.',
-    description: 'Complete mechanical and structural construction adhering to ASME and IBR engineering specifications.',
-    image: '/images/img/services/service2.jpg',
-    icon: '/images/svg/services/robotic.svg'
+    title: 'Annual Service Contracts',
+    slug: 'annual-service-contracts',
+    summary: 'Dedicated routine maintenance, preventive diagnostics, and emergency onsite technical support.',
+    description: 'Comprehensive annual maintenance contracts ensuring maximum uptime, certified calibration, and continuous steam reliability.',
+    image: 'https://jpnzetekuwlnefxdrbgt.supabase.co/storage/v1/object/public/revati-media/solutions/75bb7dc9-936b-415b-aeda-e6c93d20e07d.webp'
   },
   {
     id: 3,
-    title: 'Chemical & Process Heating',
-    slug: 'chemical-industry',
-    summary: 'Thermic fluid systems, titanium heat exchangers, and high-temp corrosive fluid handling.',
-    description: 'Engineered heating solutions designed specifically for pharmaceutical synthesis and chemical manufacturing.',
-    image: '/images/img/services/service3.jpg',
-    icon: '/images/svg/services/bioengineering.svg'
+    title: 'Supervision of Installation Testing & Commissioning',
+    slug: 'supervision-of-installation-testing-and-commissioning',
+    summary: 'Expert mechanical and electrical supervision during boiler, heat pump, and piping erection.',
+    description: 'Certified engineers ensuring flawless alignment, pressure hydrostatic testing, and regulatory sign-offs.',
+    image: 'https://jpnzetekuwlnefxdrbgt.supabase.co/storage/v1/object/public/revati-media/solutions/b77bb28f-9017-40c0-b497-c060f0bed5ff.webp'
   },
   {
     id: 4,
-    title: 'Energy & Commodities Optimization',
-    slug: 'energy-commodities',
-    summary: 'Industrial heat pump systems and waste heat recovery loops reducing operational costs by up to 60%.',
-    description: 'Cutting-edge closed-loop thermal harvesting that transforms industrial waste heat into usable high-temperature energy.',
-    image: '/images/img/services/service4.jpg',
-    icon: '/images/svg/services/oil-well.svg'
+    title: 'Balance of Plant',
+    slug: 'balance-of-plant',
+    summary: 'Turnkey thermal fluid auxiliaries, deaerators, feed water stations, and economizers.',
+    description: 'Complete balance of plant engineering integrating boilers, economizers, water treatment, and electrical control panels.',
+    image: 'https://jpnzetekuwlnefxdrbgt.supabase.co/storage/v1/object/public/revati-media/solutions/4d7d75e1-6d19-41b1-ba85-73ba750d12be.webp'
   }
 ];
 
@@ -247,47 +244,56 @@ export const FALLBACK_APPLICATIONS: Application[] = [
 
 export const FALLBACK_PROJECTS: Project[] = [
   {
-    id: 1,
-    title: 'Regulatory Compliance Thermal System',
-    slug: 'regulatory-compliance-thermal-system',
+    id: 5,
+    title: 'Power Plant Waste Heat Recovery',
+    slug: 'water-heat-recovery-power-plant',
     location: 'Kolkata, West Bengal',
-    project_type: 'Industrial Thermal',
-    summary: 'Turnkey thermal engineering and regulatory steam compliance system engineered for large-scale industrial manufacturing.',
+    project_type: 'Energy Management',
+    summary: 'Turnkey waste heat recovery boiler (WHR) and steam generation system integrated with exhaust loops.',
+    image: 'https://jpnzetekuwlnefxdrbgt.supabase.co/storage/v1/object/public/revati-media/projects/0d2d9d89-cc11-4358-b3ff-80471a1fd845.webp'
+  },
+  {
+    id: 1,
+    title: 'Regulatory Compliance System',
+    slug: 'regulatory-compliance-system-1',
+    location: 'Kolkata, West Bengal',
+    project_type: 'Statutory Compliance',
+    summary: 'Turnkey thermal engineering and statutory steam compliance system engineered for industrial manufacturing.',
     image: '/images/img/projects/project1.jpg'
   },
   {
     id: 2,
-    title: 'Commercial Steam Recovery Plant',
-    slug: 'commercial-steam-recovery-plant',
-    location: 'Howrah Industrial Belt, Kolkata',
-    project_type: 'Energy Management',
-    summary: 'High-efficiency condensate and flash steam heat recovery network integrated into process pipelines.',
+    title: 'Regulatory Compliance System',
+    slug: 'regulatory-compliance-system-2',
+    location: 'Kolkata, West Bengal',
+    project_type: 'High-Temperature Piping',
+    summary: 'High-temperature hydronic piping network and pressure vessel compliance validation.',
     image: '/images/img/projects/project2.jpg'
   },
   {
     id: 3,
-    title: 'Cleanroom Climate Engineering Facility',
-    slug: 'cleanroom-climate-engineering-facility',
-    location: 'Salt Lake Sector V, Kolkata',
-    project_type: 'Cleanroom HVAC',
-    summary: 'Precision environmental validation and aseptic climate control system for pharmaceutical packaging.',
+    title: 'Regulatory Compliance System',
+    slug: 'regulatory-compliance-system-3',
+    location: 'Kolkata, West Bengal',
+    project_type: 'Thermal Systems',
+    summary: 'Automated thermal energy management and process heating monitoring.',
     image: '/images/img/projects/project3.jpg'
   },
   {
     id: 4,
-    title: 'Industrial Process Heating Infrastructure',
-    slug: 'industrial-process-heating-infrastructure',
-    location: 'Durgapur Industrial Complex, West Bengal',
-    project_type: 'Boilers & Heaters',
-    summary: 'Heavy-duty thermic fluid heating unit with automated modulation and low emissions burners.',
+    title: 'Regulatory Compliance System',
+    slug: 'regulatory-compliance-system-4',
+    location: 'Kolkata, West Bengal',
+    project_type: 'Boiler Infrastructure',
+    summary: 'Heavy-duty thermic fluid heating unit with automated modulation.',
     image: '/images/img/projects/project4.jpg'
   },
   {
-    id: 5,
-    title: 'Turnkey Hydronic Piping Network',
-    slug: 'turnkey-hydronic-piping-network',
-    location: 'Haldia Petrochemical Hub, West Bengal',
-    project_type: 'Piping & Valves',
+    id: 6,
+    title: 'Regulatory Compliance System',
+    slug: 'regulatory-compliance-system-5',
+    location: 'Kolkata, West Bengal',
+    project_type: 'Energy Recovery',
     summary: 'ASME-compliant high-pressure hydronic distribution loop with precision flow regulation.',
     image: '/images/img/projects/project5.jpg'
   }
@@ -297,23 +303,26 @@ export const FALLBACK_TESTIMONIALS: Testimonial[] = [
   {
     id: 1,
     full_name: 'Sheela Adhikari',
-    company_name: 'Precision Engineering Pvt. Ltd.',
-    position: 'Chief Technical Director',
-    message: 'Revati Global provided exceptional engineering support for our high-temperature boiler and piping installation. Highly recommended for thermal projects.'
+    company_name: 'Manufacturing Operations',
+    position: 'Technical Director',
+    message: 'I have been using the Shellmax Boiler for over two years at our manufacturing facility. It is easy to maintain, and the energy savings experienced have a positive impact on our overall cost structure.',
+    image: 'https://jpnzetekuwlnefxdrbgt.supabase.co/storage/v1/object/public/revati-media/testimonials/51bf09e2-b70a-44f2-b967-208304a83354.webp'
   },
   {
     id: 2,
     full_name: 'Nisha Karki',
-    company_name: 'Apex Cleanroom & Formulations',
+    company_name: 'Industrial Processing Hub',
     position: 'Plant Operations Manager',
-    message: 'Their cleanroom HVAC validation and hydronic balancing delivered outstanding performance within stringent regulatory parameters.'
+    message: 'Combipac boiler performance is highly efficient, providing consistent steam generation while keeping fuel consumption to a minimum. It has contributed to a cleaner and more sustainable operation.',
+    image: 'https://jpnzetekuwlnefxdrbgt.supabase.co/storage/v1/object/public/revati-media/testimonials/d93ed173-6da0-443f-b1f9-58036fe872c7.webp'
   },
   {
     id: 3,
     full_name: 'Mamata Gurung',
-    company_name: 'Eastern Manufacturing Hub',
-    position: 'General Manager',
-    message: 'Reliable engineering, punctual delivery, and thorough technical expertise. The Kolkata engineering team has been a valuable partner for our plant expansion.'
+    company_name: 'Engineering Systems Ltd',
+    position: 'Facilities Lead',
+    message: 'Choosing Aquatherm for our plumbing systems has been one of the best decisions for our business. The durability and reliability of the pipes have significantly reduced maintenance costs and downtime.',
+    image: 'https://jpnzetekuwlnefxdrbgt.supabase.co/storage/v1/object/public/revati-media/testimonials/91a484ba-024d-4828-94d2-a2d103e04cc1.webp'
   }
 ];
 
@@ -325,40 +334,23 @@ export const FALLBACK_DOWNLOADS: DownloadItem[] = [
     description: 'Complete technical specifications, burner configurations, and dimension schedules.',
     file: '/brand/corporate-profile.pdf',
     file_size: '3.4 MB'
-  },
-  {
-    id: 2,
-    title: 'Revati Global Corporate Engineering Profile',
-    category: 'Corporate',
-    description: 'Comprehensive overview of engineering competencies, thermal projects, and client case studies.',
-    file: '/brand/heat-pump-datasheet.pdf',
-    file_size: '2.1 MB'
   }
 ];
 
 export const FALLBACK_BLOGS: BlogPost[] = [
   {
     id: 1,
-    title: 'Decarbonizing Industrial Heat: Why Heat Pumps Outperform Boilers',
-    slug: 'decarbonizing-industrial-heat-pumps',
-    summary: 'An engineering analysis on how industrial heat pumps deliver up to 4x efficiency gains compared to diesel or gas boilers.',
-    published_at: '2026-03-15',
+    title: 'Technology is important for your business and industry growth',
+    slug: 'technology-is-important-for-your-business-you-use-technology-makes',
+    summary: 'How modern boiler technologies, digital dosing, and smart monitoring optimize energy output.',
+    published_at: '2025-04-08',
     author: 'Revati Engineering Team',
-    image: '/images/img/blogs/blog1.jpg'
-  },
-  {
-    id: 2,
-    title: 'ISO 14644 Cleanroom Airflow Principles for Pharmaceutical Facilities',
-    slug: 'iso-14644-cleanroom-airflow-principles',
-    summary: 'Designing turbulent vs laminar airflow regimens to control airborne viable and non-viable particulate concentrations.',
-    published_at: '2026-02-28',
-    author: 'Revati Engineering Team',
-    image: '/images/img/blogs/blog2.jpg'
+    image: 'https://jpnzetekuwlnefxdrbgt.supabase.co/storage/v1/object/public/revati-media/blogs/0af8d54b-405a-4875-b371-d437276aa27d.webp'
   }
 ];
 
 // -------------------------------------------------------------
-// Live API Methods (with graceful fallback)
+// Live API Methods (with graceful fallback to verified assets)
 // -------------------------------------------------------------
 
 export async function getBanners(): Promise<Banner[]> {
@@ -449,7 +441,16 @@ export async function getProjects(): Promise<Project[]> {
     });
     if (!res.ok) return FALLBACK_PROJECTS;
     const data = await res.json();
-    return data.projects?.length ? data.projects : FALLBACK_PROJECTS;
+    if (data.projects && data.projects.length > 0) {
+      const combined: Project[] = [...data.projects];
+      for (const fp of FALLBACK_PROJECTS) {
+        if (!combined.some(p => p.slug === fp.slug || p.id === fp.id)) {
+          combined.push(fp);
+        }
+      }
+      return combined;
+    }
+    return FALLBACK_PROJECTS;
   } catch {
     return FALLBACK_PROJECTS;
   }

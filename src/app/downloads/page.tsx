@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   description: 'Download official engineering brochures, product datasheets, and ISO certificates for Revati Global machinery.',
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function DownloadsPage() {
   const downloads = await getDownloads();
 

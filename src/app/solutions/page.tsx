@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   description: 'Explore turnkey industrial heating, heat pumps, cleanroom HVAC, and thermal piping solutions engineered by Revati Global.',
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function SolutionsPage() {
   const solutions = await getSolutions();
 
