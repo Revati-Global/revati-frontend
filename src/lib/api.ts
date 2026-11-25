@@ -165,7 +165,7 @@ export const FALLBACK_FEATURES: Feature[] = [
     title: 'Safety Commitment',
     slug: 'safety-commitment',
     image: 'https://jpnzetekuwlnefxdrbgt.supabase.co/storage/v1/object/public/revati-media/features/851e60a8-bf3c-4c09-a704-6229f29a3251.svg',
-    description: 'Our company is committed to delivering the highest safety standards across all installations, adhering to ASME, IBR, and ISO guidelines.'
+    description: 'Our company is committed to delivering the highest safety standards across all installations, adhering to stringent engineering guidelines.'
   }
 ];
 
@@ -294,7 +294,7 @@ export const FALLBACK_PROJECTS: Project[] = [
     slug: 'regulatory-compliance-system-5',
     location: 'Kolkata, West Bengal',
     project_type: 'Energy Recovery',
-    summary: 'ASME-compliant high-pressure hydronic distribution loop with precision flow regulation.',
+    summary: 'High-pressure hydronic distribution loop with precision flow regulation.',
     image: '/images/img/projects/project5.jpg'
   }
 ];

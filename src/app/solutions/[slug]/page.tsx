@@ -123,7 +123,7 @@ export default async function SolutionDetailPage({ params }: { params: { slug: s
               <div className="pt-4 border-t border-white/10 space-y-2 text-xs text-[#D9DDE3]">
                 <div className="flex items-center gap-2 font-mono">
                   <Shield className="w-4 h-4 text-[#645394]" />
-                  <span>ISO 9001:2015 Assured</span>
+                  <span>Verified Engineering Standards</span>
                 </div>
                 <div className="flex items-center gap-2 font-mono">
                   <Wrench className="w-4 h-4 text-[#645394]" />

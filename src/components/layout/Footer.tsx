@@ -11,27 +11,17 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="relative h-12 w-48 bg-white/10 p-2 rounded-xl backdrop-blur-sm inline-block">
+            <div className="relative h-12 w-48">
               <Image
-                src="/brand/logo-full.png"
+                src="/brand/logo-white.png"
                 alt="Revati Global Logo"
                 fill
-                className="object-contain object-left px-2"
+                className="object-contain object-left"
               />
             </div>
             <p className="text-xs text-[#D9DDE3] leading-relaxed max-w-sm">
               Revati Global delivers industrial process heating, commercial heat pumps, precision cleanroom HVAC, and turnkey mechanical piping solutions across India and international markets.
             </p>
-            <div className="flex items-center gap-3 pt-2">
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/10 border border-white/10 text-[11px] font-mono text-[#D9DDE3]">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#645394]" />
-                <span>ISO 9001:2015</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/10 border border-white/10 text-[11px] font-mono text-[#D9DDE3]">
-                <Award className="w-3.5 h-3.5 text-[#645394]" />
-                <span>ASME / IBR</span>
-              </div>
-            </div>
           </div>
 
           {/* Solutions Column */}

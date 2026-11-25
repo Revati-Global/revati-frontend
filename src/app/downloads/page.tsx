@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Brochures & Technical Datasheets | Revati Global',
-  description: 'Download official engineering brochures, product datasheets, and ISO certificates for Revati Global machinery.',
+  description: 'Download official engineering brochures and technical datasheets for Revati Global systems.',
 };
 
 export const dynamic = 'force-dynamic';

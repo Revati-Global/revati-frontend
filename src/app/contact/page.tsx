@@ -118,7 +118,7 @@ export default function ContactPage() {
               <div className="pt-6 border-t border-white/10 space-y-3">
                 <div className="flex items-center gap-2 text-xs font-mono text-[#D9DDE3]">
                   <ShieldCheck className="w-4 h-4 text-[#645394]" />
-                  <span>ISO 9001:2015 Certified System Integrator</span>
+                  <span>Direct Engineering Consultation & Support</span>
                 </div>
                 <p className="text-[11px] text-slate-400">
                   Standard RFQ response window: Within 24-48 business hours with preliminary thermal assessment.

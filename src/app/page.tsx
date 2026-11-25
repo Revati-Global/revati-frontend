@@ -116,15 +116,11 @@ export default async function HomePage() {
               <div className="pt-8 border-t border-white/10 flex flex-wrap items-center gap-6 text-xs text-[#D9DDE3] font-mono">
                 <span className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#D9DDE3]" />
-                  ISO 9001:2015 Certified
-                </span>
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#D9DDE3]" />
-                  ASME & IBR Compliant
-                </span>
-                <span className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#D9DDE3]" />
                   Kolkata Headquarters &bull; Pan-India Support
+                </span>
+                <span className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#D9DDE3]" />
+                  Turnkey Thermal & Cleanroom Solutions
                 </span>
               </div>
             </div>
@@ -252,7 +248,7 @@ export default async function HomePage() {
               Headquartered in Kolkata, West Bengal, <strong>Revati Global Pvt. Ltd.</strong> is an engineering powerhouse dedicated to transforming industrial thermal efficiency, clean energy deployment, and precision cleanroom environments.
             </p>
             <p className="text-sm text-slate-600 leading-relaxed">
-              We provide end-to-end engineering, procurement, installation, and commissioning (EPIC) across boilers, industrial heat pumps, steam networks, and HVAC climate systems. Every project adheres strictly to ASME, IBR, and ISO 9001:2015 quality standards.
+              We provide end-to-end engineering, procurement, installation, and commissioning (EPIC) across boilers, industrial heat pumps, steam networks, and HVAC climate systems, built for uncompromising industrial performance.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">

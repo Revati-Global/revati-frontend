@@ -88,33 +88,33 @@ export default function AboutPage() {
               Quality Assurance
             </span>
             <h2 className="text-3xl font-extrabold text-[#35313B] font-heading">
-              Certified Compliance & Stringent Codes
+              Engineering Principles & Capabilities
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 max-w-xl">
-              Every system manufactured and installed by Revati Global complies with statutory manufacturing codes and international standards.
+              Every system engineered and commissioned by Revati Global adheres to the highest parameters of industrial safety and thermal performance.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="p-5 rounded-2xl bg-[#F2F1F5] space-y-2">
               <ShieldCheck className="w-6 h-6 text-[#645394]" />
-              <h4 className="font-bold text-sm text-[#35313B]">ISO 9001:2015</h4>
-              <p className="text-xs text-slate-500">Quality Management System certified for design, fabrication, and site testing.</p>
+              <h4 className="font-bold text-sm text-[#35313B]">Turnkey Execution</h4>
+              <p className="text-xs text-slate-500">Design, procurement, fabrication, and rigorous on-site commissioning.</p>
             </div>
             <div className="p-5 rounded-2xl bg-[#F2F1F5] space-y-2">
               <Award className="w-6 h-6 text-[#645394]" />
-              <h4 className="font-bold text-sm text-[#35313B]">ASME Section VIII</h4>
-              <p className="text-xs text-slate-500">Pressure vessel welding and radiography testing protocol compliance.</p>
+              <h4 className="font-bold text-sm text-[#35313B]">Energy Optimization</h4>
+              <p className="text-xs text-slate-500">Waste heat recovery loops and high-COP heat pump integrations.</p>
             </div>
             <div className="p-5 rounded-2xl bg-[#F2F1F5] space-y-2">
               <Factory className="w-6 h-6 text-[#645394]" />
-              <h4 className="font-bold text-sm text-[#35313B]">Indian Boiler Regulations (IBR)</h4>
-              <p className="text-xs text-slate-500">Approved materials, certified welders, and statutory inspector sign-offs.</p>
+              <h4 className="font-bold text-sm text-[#35313B]">Industrial Equipment</h4>
+              <p className="text-xs text-slate-500">High-efficiency boilers, thermic fluid heaters, and precision hydronics.</p>
             </div>
             <div className="p-5 rounded-2xl bg-[#F2F1F5] space-y-2">
               <Users className="w-6 h-6 text-[#645394]" />
-              <h4 className="font-bold text-sm text-[#35313B]">ISO 14644 Validation</h4>
-              <p className="text-xs text-slate-500">Cleanroom particle counting, HEPA filter integrity, and recovery testing.</p>
+              <h4 className="font-bold text-sm text-[#35313B]">Pan-India Support</h4>
+              <p className="text-xs text-slate-500">Kolkata engineering hub delivering prompt technical lifecycle service.</p>
             </div>
           </div>
         </div>
